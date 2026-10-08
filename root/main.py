@@ -1,11 +1,10 @@
-import cv2
-#add doc strings
-""""""
-#get valid chioce - add type pins (incidicate the vaule that its expecting)
-#add typin for first two return fun
+def get_valid_choice(prompt: str, valid_choices: list) -> str:
+    """Makes the player give a choice that works. Repeats until given.
 
-
-def get_valid_choice(prompt, valid_choices):
+    :param prompt: Message is given to the player
+    :param valid_choices: The list of choices given to the player
+    :return: The player input string
+    """
     while True:
         user_input = input(prompt)
         if user_input in valid_choices:
@@ -13,7 +12,11 @@ def get_valid_choice(prompt, valid_choices):
         print(f"Invalid choice. Please enter one of the following: {valid_choices}\n")
 
 
-def solve_lab_puzzle():
+def solve_lab_puzzle() -> bool:
+    """Gives a math puzzle to the player.
+
+    :return: True if the player gives the correct answer in 3 attempts, False otherwise
+    """
     print("\nComputer Terminal Puzzle")
     print("To bypass the security, solve this equation:")
     print("What is 5 + 3 * 4?")
@@ -30,7 +33,11 @@ def solve_lab_puzzle():
     return False
 
 
-def main():
+def main() -> None:
+    """Runs the main game on loop.
+
+    :return: None
+    """
     current_room = "hallway"
     game_over = False
 
