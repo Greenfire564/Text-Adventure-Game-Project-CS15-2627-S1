@@ -7,74 +7,94 @@ Whenever the player enters a room, the program should provide a brief descriptio
 For example:
 
 ```text
-You enter a dark storage room. A locked cabinet sits against the wall.
+You wake up in a square torchlit room.
+You feel the warm cracked stone tile beneath you as you come to your senses.
+A small brass key lies on an ornate stone pedestal.
+In the center of each wall is a door with a keyhole.
 
 What would you like to do?
-1. Search the room
-2. Return to the hallway
+1. Take Key
+2. Try North Door
+3. Try East Door
+4. Try South Door
+5. Try West Door
 ```
 
 As the player completes actions, the game should remember what has happened and change accordingly.
 
 ## Project Requirements Checklist
 
-### Game Structure
+* [ ] Game uses a state machine with a minimum of 10 states to represent "rooms".
+* [ ] State machine is non-linear allowing players to return to previous states.
+* [ ] Clear prompts are provided in each room to the player indicating what actions they can take and what input they need to provide to take such actions.
+* [ ] State machine is controlled by text input from a player.
+* [ ] The player can successfully complete the game by getting to an end point or win state.
+* [ ] A minimum of 6 variables are used to track other game information (this could be things like collected items, NPCs that a player has met, or locked doors, etc.).
+* [ ] At least 1 prompt provided to the player changes depending on at least one of the aforementioned variables (for example: If they have do not have a key when they enter a room, they do not have the option to go through a locked door. If they do have a key, the prompt changes to allow them to go through the locked door.)
+* [ ] At least 1 "puzzle input" that requires the player to provide a specific input to get past the obstacle (this could be a password hidden elsewhere in the game, the solution to a riddle or math problem, or the solution to a puzzle of your creation).
+* [ ] Input is always verified before the program can continue (this includes creating a loop that does not exit until the input is validated AND providing the player a clear message about why their input was invalid).
+* [ ] The game does not produce any errors and does not crash.
+* [ ] Python code follows the Best Practices provided by Mr. Forsyth.
 
-* [ ] Your game uses a **state machine** to keep track of the player's current room or location.
-* [ ] Your game contains **at least 10 different rooms or locations**.
-* [ ] The rooms are connected in a **non-linear layout**. The player must have choices about where to travel rather than simply moving through rooms in one fixed order.
-* [ ] Each room provides a clear description when the player enters it.
-* [ ] Each room provides the player with appropriate actions or choices.
-* [ ] The player can move between rooms using text input.
-* [ ] Your game has a clear objective and a clear ending.
-* [ ] The player can successfully complete or win the game.
-
-### Tracking Game Information
-
-* [ ] Your program uses **at least 6 variables** to keep track of information about what has happened in the game.
-* [ ] These variables affect what the player can see, do, or access later in the game.
-
-Possible information to track could include:
-
-* Whether a door has been unlocked.
-* Whether an enemy has been defeated.
-* Whether an item has been collected.
-* Whether treasure has already been taken.
-* Whether a puzzle has been solved.
-* Whether the player has discovered important information.
-
-### Changing Choices
-
-* [ ] The available choices in a room change when appropriate based on what has already happened.
-* [ ] Actions that can only happen once are removed or changed after they are completed.
-
-For example, if the player chooses to take a key, the game should remember that the key has been taken. Returning to the room should no longer give the player the option to take the same key again.
-
-### Challenge or Obstacle
-
-* [ ] Your game includes **at least one obstacle that requires the player to provide a specific input before they can continue**.
-* [ ] The obstacle must require the player to discover, calculate, remember, or determine the correct answer.
-* [ ] Successfully completing the obstacle must affect the state of the game.
-
-Examples could include calculating the answer to a problem given by a character, discovering a password in another room, finding a code that opens a locked door, or collecting information needed to answer a question later.
-
-### User Input and Output
-
-* [ ] The program clearly explains what is happening to the player.
-* [ ] The player is given clear instructions about what they can enter.
-* [ ] The program **validates all user input before using it**.
-* [ ] Invalid input does not cause the program to crash.
-* [ ] Invalid input provides useful feedback and allows the player to try again.
-* [ ] The game should be **error-proof during normal gameplay**.
-
-### Structured Programming
-
-Your program must demonstrate a clear understanding of the three major control structures used in structured programming:
+### Demonstrate Structured Programming:
 
 * [ ] **Sequence:** Instructions are organized in a logical order so that actions happen at the correct time.
 * [ ] **Selection:** `if`, `elif`, and `else` statements are used to make decisions based on user choices and the current state of the game.
 * [ ] **Iteration:** Loops are used appropriately to repeat gameplay and/or validate user input.
 * [ ] **Functions:** Functions are used to organize the program into manageable sections and avoid unnecessary repeated code.
+
+## What "Changing Options" Looks Like
+
+Consider the following example of what it might look like for a players options to change over the course of the game.
+
+### It Could Be That Actions In The Room Change The Room
+
+The first time they enter a room their options might be:
+
+```text
+You enter a small room.
+Inside the room is a locked trunk marked with your initials.
+
+1. Use key on trunk.
+2. Leave room.
+```
+
+Then if the player uses the key on the trunk in the room, and leave and come back later, they might receive a different message:
+
+```text
+You enter a small room.
+Inside the room is an open trunk that used to contain your family's crown.
+
+1. Close trunk.
+2. Leave room.
+```
+
+### It Could Be That Actions in One Room Affect Another Room
+
+Consider you enter a room for the first time and get this message:
+
+```text
+In front of you lies what appears to be a fountain, but with no running water.
+To the south is a door where you can hear a small dripping sound.
+To the west is a well lit hallway.
+
+1. Inspect fountain
+2. Go south
+3. Go west
+```
+
+Perhaps in the south room there is a lever that the player can pull, which activates the fountain. When they return to the fountain room, the player may get a different message:
+
+```text
+The fountain flows with a sparkling liquid that looks almost like flowing gold.
+There is a door to the south, but the small dripping sound has stopped.
+To the west is a well lit hallway.
+
+1. Inspect fountain
+2. Drink from fountain
+3. Go south
+4. Go west
+```
 
 ## Creativity
 
